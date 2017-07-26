@@ -12,6 +12,9 @@ import java.util.Collection;
 
 
 public class ManagementSystem {
+	
+	public static String PATH_TO_XML = "pathToXML";
+	
 	private static Connection con;
 	private static ManagementSystem instance;
 
@@ -29,6 +32,7 @@ public class ManagementSystem {
 				con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/devDb", "sa", "");
 
 				DatabaseMetaData meta = con.getMetaData();
+				
 				ResultSet res = meta.getTables(null, null, "PRODUCTS", null);
 				if (!res.next()) {
 					Statement stmt = con.createStatement();
@@ -45,6 +49,20 @@ public class ManagementSystem {
 				      		"  primary key (id)\r\n" + 
 				      		") engine=InnoDB;";
 				      stmt.executeUpdate(sql);
+				}
+				res = meta.getTables(null, null, "PREFERENCES", null);
+				if (!res.next()) {
+					Statement stmt = con.createStatement();
+					String sql = "create table PREFERENCES (\r\n" + 
+							"id long unsigned not null auto_increment,\r\n" + 
+							"key varchar(255) unsigned not null,\r\n" + 
+							"value varchar(600) not null,\r\n" + 
+							"primary key (id)\r\n" + 
+							") engine=InnoDB;";
+					stmt.executeUpdate(sql);
+				    sql = "insert into PREFERENCES (key, value)\r\n" + 
+				      		"values ('" + PATH_TO_XML + "', 'c:\\path\\To\\XML');";
+				    stmt.executeUpdate(sql);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -132,10 +150,30 @@ public class ManagementSystem {
 
 	}
 
-	public boolean deleteProduct(Product product) throws SQLException {
+	public void deleteProduct(Product product) throws SQLException {
 		PreparedStatement stmt = con.prepareStatement("DELETE FROM products WHERE id =  ?");
 		stmt.setLong(1, product.getId());
-		return stmt.execute();
+		stmt.execute();
+	}
+	
+	public String getPreference(String key) throws SQLException{
+		String value = "NOTFOUND";
+		PreparedStatement stmt = con.prepareStatement("SELECT value FROM PREFERENCES WHERE key = ?");
+		stmt.setString(1, key);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			value = rs.getString(1);
+		}
+		rs.close();
+		stmt.close();
+		return value;
+	}
+	
+	public void setPreference(String key, String value) throws SQLException {
+		PreparedStatement stmt = con.prepareStatement("UPDATE PREFERENCES SET value = ? WHERE key = ?");
+		stmt.setString(1, value);
+		stmt.setString(2, key);
+		stmt.executeUpdate();
 	}
 
 }

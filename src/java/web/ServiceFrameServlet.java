@@ -25,7 +25,12 @@ public class ServiceFrameServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String savedpath = "C:\\User\\1.xml";
+		String savedpath ="";
+		try {
+			savedpath = ManagementSystem.getInstance().getPreference(ManagementSystem.PATH_TO_XML);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		req.setAttribute("savedpath", savedpath);
 		getServletContext().getRequestDispatcher("/ServiceFrame.jsp").forward(req, resp);
 	}
@@ -37,10 +42,19 @@ public class ServiceFrameServlet extends HttpServlet {
     	resp.setCharacterEncoding("UTF-8");
     	resp.setContentType("text/html; charset=UTF-8");
     	
+    	if (req.getParameter("Apply") != null) {
+    		try {
+				ManagementSystem.getInstance().setPreference(ManagementSystem.PATH_TO_XML, req.getParameter("filepath"));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+    		resp.sendRedirect("service");
+    	}
+    	
     	if (req.getParameter("Upload") != null) {
     		readFile(req, resp);
+    		resp.sendRedirect("main");
     	}
-    	resp.sendRedirect("main");
 	}
 
 private void readFile(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -50,11 +64,10 @@ private void readFile(HttpServletRequest req, HttpServletResponse resp) throws I
 
 	    try {
 	        filecontent = filePart.getInputStream();
-	        ArrayList<Product> products = new ProductHandler(getServletContext()).parseFile(filecontent);
+	        ArrayList<Product> products = new ProductHandler().parseFile(filecontent);
 	        Iterator<Product> iter = products.iterator();
 	        
 	        while (iter.hasNext()) {
-	        	
 	        	ManagementSystem.getInstance().insertProduct(iter.next());
 	        }
 		} catch (SQLException e) {
