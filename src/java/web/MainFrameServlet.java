@@ -1,7 +1,6 @@
 package web;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,11 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import utility.ManagementSystem;
 import utility.Product;
-import utility.ProductHandler;
 import utility.ViewCounter;
 import web.forms.MainFrameForm;
 

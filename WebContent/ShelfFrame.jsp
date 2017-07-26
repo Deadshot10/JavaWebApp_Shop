@@ -113,7 +113,7 @@
 		<footer>
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Copyright &copy; 2017</p>
+					<p>Copyright &copy; 2017 https://startbootstrap.com/template-overviews/shop-homepage</p>
 				</div>
 			</div>
 		</footer>

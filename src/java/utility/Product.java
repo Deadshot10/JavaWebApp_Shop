@@ -3,7 +3,7 @@ package utility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Product implements Comparable {
+public class Product implements Comparable<Product> {
 	
 	private long id;
 	private long product_id;
@@ -96,11 +96,6 @@ public class Product implements Comparable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	@Override
-	public int compareTo(Object o) {
-		return this.product_id > ((Product)o).product_id ? 1 : this.product_id < ((Product)o).product_id ? -1 : 0;
-    }
 
 	public long getId() {
 		return id;
@@ -115,6 +110,12 @@ public class Product implements Comparable {
 		return " id: " + id + " title: " + title + " product_id: " + product_id + " description: " + description 
 				+ " rating: " + rating + " inet_price: " + inet_price + " price: " + price + " image: " + image;
 		
+	}
+
+	@Override
+	public int compareTo(Product o) {
+		// TODO Auto-generated method stub
+		return this.product_id > o.product_id ? 1 : this.product_id < o.product_id ? -1 : 0;
 	}
 
 }

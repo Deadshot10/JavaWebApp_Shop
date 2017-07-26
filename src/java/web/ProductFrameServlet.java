@@ -3,12 +3,6 @@ package web;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.SortedMap;
-import java.util.SortedSet;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.glass.ui.View;
-
-import javafx.util.Pair;
 import utility.ManagementSystem;
 import utility.Product;
 import utility.ViewCounter;
@@ -48,8 +39,6 @@ public class ProductFrameServlet extends HttpServlet {
     	
         getServletContext().getRequestDispatcher("/ProductFrame.jsp").forward(req, resp);
     }
-
-    
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	req.setCharacterEncoding("UTF-8");
@@ -113,13 +102,4 @@ public class ProductFrameServlet extends HttpServlet {
         return s;
     }
 
-	@Override
-	public void destroy() {
-		// TODO Save view count
-	}
-
-	@Override
-	public void init() throws ServletException {
-		
-	}
 }

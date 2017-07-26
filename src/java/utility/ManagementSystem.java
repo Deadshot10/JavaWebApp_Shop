@@ -9,16 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Level;
 
-import com.sun.istack.internal.logging.Logger;
-
-//import org.h2.tools.Server;
 
 public class ManagementSystem {
 	private static Connection con;
 	private static ManagementSystem instance;
-	// private static DataSource dataSource;
 
 	boolean ascending = true;
 
@@ -29,12 +24,6 @@ public class ManagementSystem {
 		if (instance == null) {
 			try {
 				instance = new ManagementSystem();
-				// Context initContext = new InitialContext();
-				// Context envContext = (Context) initContext.lookup("java:comp/env");
-				// ManagementSystem.dataSource = (DataSource)
-				// envContext.lookup("jdbc/StudentsDS");
-				// if (dataSource == null) throw new Exception("Data source not found!");
-				// con = dataSource.getConnection();
 
 				Class.forName("org.h2.Driver");
 				con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/devDb", "sa", "");
@@ -57,9 +46,6 @@ public class ManagementSystem {
 				      		") engine=InnoDB;";
 				      stmt.executeUpdate(sql);
 				}
-
-				// } catch (NamingException e) {
-				// e.printStackTrace();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
