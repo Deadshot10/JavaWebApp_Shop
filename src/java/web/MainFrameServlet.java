@@ -81,7 +81,5 @@ public class MainFrameServlet extends HttpServlet {
     	resp.setCharacterEncoding("UTF-8");
     	resp.setContentType("text/html; charset=UTF-8");
     }
-    
-    
-    
+
 }

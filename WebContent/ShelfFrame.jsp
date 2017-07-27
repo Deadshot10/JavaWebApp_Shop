@@ -17,7 +17,7 @@
 	src='<%=org.webjars.AssetLocator.getWebJarPath("dist/plotly.js")%>'></script>
 
 <!-- Custom CSS -->
-<link href="css/shop-homepage.css" rel="stylesheet">
+<link href="css/shelf-page.css" rel="stylesheet">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,7 +37,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				<p class="lead">Quality</p>
-				<div class="list-group">
+				<div class="list-group checked-list-box">
 					<a href="${pageContext.request.contextPath}/main?type=exellent"
 						class="list-group-item">Excellent</a> <a
 						href="${pageContext.request.contextPath}/main?type=good"
@@ -46,7 +46,7 @@
 						class="list-group-item">Bad</a>
 				</div>
 				<p class="lead">Sort</p>
-				<div class="list-group">
+				<div class="list-group checked-list-box">
 					<a href="${pageContext.request.contextPath}/main?sort=price"
 						class="list-group-item">Price</a> <a
 						href="${pageContext.request.contextPath}/main?sort=rating"

@@ -91,7 +91,7 @@
 				<div class="col-sm-3 col-lg-3 col-md-3">
 					<div>&nbsp;</div>
 					<div>
-						<input type="submit" value="Create" name="Create" />
+						<input type="submit" value="Apply" name="Create" />
 						<input type="submit" value="Delete" name="Delete" />
 						<input type="submit" value="Cancel" name="Cancel" />
 					</div>
