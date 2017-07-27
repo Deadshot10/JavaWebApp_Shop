@@ -64,16 +64,10 @@ public class ManagementSystem {
 				      		"values ('" + PATH_TO_XML + "', 'c:\\path\\To\\XML');";
 				    stmt.executeUpdate(sql);
 				}
-			} catch (SQLException e) {
-				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
+				//TODO do something to establish connection next time
 			}
-		}
-		try {
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return instance;
 	}

@@ -17,7 +17,7 @@
 	src='<%=org.webjars.AssetLocator.getWebJarPath("dist/plotly.js")%>'></script>
 
 <!-- Custom CSS -->
-<link href="css/shelf-page.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,22 +37,17 @@
 		<div class="row">
 			<div class="col-md-3">
 				<p class="lead">Quality</p>
-				<div class="list-group checked-list-box">
-					<a href="${pageContext.request.contextPath}/main?type=exellent"
-						class="list-group-item">Excellent</a> <a
-						href="${pageContext.request.contextPath}/main?type=good"
-						class="list-group-item">Good</a> <a
-						href="${pageContext.request.contextPath}/main?type=bad"
-						class="list-group-item">Bad</a>
+				<div class="list-group checked-list-box showing">
+					<a class="list-group-item">Excellent</a>
+					<a class="list-group-item">Good</a>
+					<a class="list-group-item">Bad</a>
 				</div>
 				<p class="lead">Sort</p>
-				<div class="list-group checked-list-box">
-					<a href="${pageContext.request.contextPath}/main?sort=price"
-						class="list-group-item">Price</a> <a
-						href="${pageContext.request.contextPath}/main?sort=rating"
-						class="list-group-item">Rating</a> <a
-						href="${pageContext.request.contextPath}/main?sort=id"
-						class="list-group-item">ID</a>
+				<div class="list-group checked-list-box sorting">
+					<a class="list-group-item">Price</a>
+					<a class="list-group-item">Rating</a>
+					<a class="list-group-item">ID</a>
+					<a class="list-group-item">Title</a>
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -76,24 +71,22 @@
 				<div class="row">
 					<c:forEach var="product" items="${form.products}">
 						<div class="col-sm-4 col-lg-4 col-md-4">
-							<div class="thumbnail">
-								<a
-									href="${pageContext.request.contextPath}/edit?id=${product.id}">
-									<img src="<c:out value="${product.image}"/>"
-									alt="ID:<c:out value="${product.product_id}"/>">
+							<div class="thumbnail" sTitle="${product.title}" sPrice="${product.price}" 
+													sId="${product.product_id}" sRating="${product.rating}">
+								<a href="${pageContext.request.contextPath}/edit?id=${product.id}">
+									<img src="<c:out value="${product.image}"/>" alt="ID:<c:out value="${product.product_id}"/>">
 								</a>
-								<div class="caption">
-									<h4>
-										<a
-											href="${pageContext.request.contextPath}/edit?id=${product.id}"><c:out
+								<div class="caption" >
+									<h4 class="title">
+										<a href="${pageContext.request.contextPath}/edit?id=${product.id}"><c:out
 												value="${product.title}" /></a>
 									</h4>
-									<h4 class="pull-right">
+									<h4 class="price pull-right" name="">
 										$
 										<c:out value="${product.price}" />
 									</h4>
 								</div>
-								<div class="ratings">
+								<div class="rating" >
 									<p>
 										<c:out value="${product.rating}" />
 									</p>
@@ -118,7 +111,12 @@
 			</div>
 		</footer>
 	</div>
-
+		<ul>
+		    <li>Banana</li>
+		    <li>Carrot</li>
+		    <li>Apple</li>
+		</ul>
+		
 	<!-- Custom JS -->
 	<script type='text/javascript' src='js/shelf-page.js'></script>
 </body>

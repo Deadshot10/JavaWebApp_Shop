@@ -1,3 +1,4 @@
 .settings
+.tern-project
 bin
 target

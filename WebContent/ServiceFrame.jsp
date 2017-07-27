@@ -8,7 +8,7 @@
 	<script type='text/javascript' src='<%=org.webjars.AssetLocator.getWebJarPath("js/bootstrap.min.js")%>'></script>
 	
 	<%-- <script type='text/javascript' src='js/service-page.js'></script>  --%>
-	<link href="css/shop-homepage.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>

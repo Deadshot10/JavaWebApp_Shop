@@ -42,33 +42,6 @@ public class MainFrameServlet extends HttpServlet {
             throw new IOException(sql_e.getMessage());
         }
         
-        String type = req.getParameter("type"); //TODO move to sql part, combine with order
-    	if (type != null && products != null) {
-    		Iterator<Product> iter = products.iterator();
-    		Collection<Product> filteredProducts = new ArrayList<>() ;
-    		if (type.equals("exellent")) {
-    			while (iter.hasNext()){
-    				Product p = iter.next();
-    				if (p.getRating() > 4)
-    					filteredProducts.add(p);
-    			}
-    		}
-    		if (type.equals("good")) {
-    			while (iter.hasNext()){
-    				Product p = iter.next();
-    				if (p.getRating() > 3 && p.getRating() <= 4 )
-    					filteredProducts.add(p);
-    			}
-    		}
-    		if (type.equals("bad")) {
-    			while (iter.hasNext()){
-    				Product p = iter.next();
-    				if (p.getRating() <= 3)
-    					filteredProducts.add(p);
-    			}
-    		}
-    		products = filteredProducts;
-    	}
     	form.setProducts(products);
         req.setAttribute("form", form);
         req.setAttribute("productsViewCount", ViewCounter.getInstance().getViewCountOfAllProducts());
