@@ -13,4 +13,5 @@ Probably work on other server (*), and can be opened from another IDE (if you ca
 * I try on glassfish, but can't configure JDBC connection pool.
 
 P.S.
-App create "%USER_PROFILE%/devDb.mv.db" database file, don't forget delete it.
+a. App create "%USER_PROFILE%/devDb.mv.db" database file, don't forget delete it.
+b. H2 console is available at http://localhost:8080/memVideo/console
